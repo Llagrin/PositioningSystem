@@ -19,7 +19,10 @@ float dt=0;                                    //Variable for delta time
 float hoek=0,hoekrad=0;                        //Variables for angle storage in Degrees and Radians
 double cal=0;                                  //Calibration value
 
+byte buffer[4];                                //Buffer for sending values
+
 int sendx=0,sendy=0;                           //Send variables;
+char keuze;
 
 void setup() {
   SPI.begin();                                 //Initialize SPI

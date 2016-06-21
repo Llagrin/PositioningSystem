@@ -10,18 +10,24 @@ void positieUpdate(){
 }
 
 void doorsturen(){
-  sendx=int(x*100);
-  sendy=int(y*100);
-  buffer[0] = sendx >> 8;
-  buffer[1] = sendx & 255;
-  buffer[2] = sendy >> 8;
-  buffer[3] = sendy & 255;
-  xbee.write(buffer,4); 
+  if (xbee.available()>0){
+    keuze = xbee.read();
+    if (keuze == 'R')reset();
+    else{
+      sendx=int(x*100);
+      sendy=int(y*100);
+      buffer[0] = sendx >> 8;
+      buffer[1] = sendx & 255;
+      buffer[2] = sendy >> 8;
+      buffer[3] = sendy & 255;
+      xbee.write(buffer,4);    
+    }
+  }
 }
 
 void reset(){
   x = 0;
-  y = 0;
+  y = -75.5;
   hoek=0;
 }
 
